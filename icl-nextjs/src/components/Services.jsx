@@ -24,7 +24,7 @@ export default function Services() {
         </div>
 
         {/* Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 24 }} className="three-col">
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))', gap: 24 }} className="three-col">
           {SERVICES.map((svc, i) => (
             <div
               key={svc.title}

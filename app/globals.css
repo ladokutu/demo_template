@@ -148,10 +148,29 @@ body {
   .nav-desktop { display: none !important; }
   .nav-burger  { display: flex !important; }
   .hero-grid   { grid-template-columns: 1fr !important; }
+  .hero-visual { display: none !important; }
   .two-col     { grid-template-columns: 1fr !important; gap: 40px !important; }
   .three-col   { grid-template-columns: 1fr 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+  .cta-inner   { flex-direction: column !important; text-align: center !important; align-items: center !important; padding: 48px 28px !important; }
 }
 @media (max-width: 600px) {
   .three-col   { grid-template-columns: 1fr !important; }
   .stats-row   { grid-template-columns: 1fr 1fr !important; }
+  .footer-grid { grid-template-columns: 1fr !important; }
+  .hero-stats  { gap: 20px !important; }
+  .hero-btns   { flex-direction: column !important; }
+  .hero-btns a { width: 100% !important; justify-content: center !important; box-sizing: border-box !important; }
+  .contact-form-row { grid-template-columns: 1fr !important; }
+  .cta-btns    { flex-direction: column !important; width: 100% !important; }
+  .cta-btns a  { text-align: center !important; justify-content: center !important; width: 100% !important; box-sizing: border-box !important; }
+
+  /* Reduce section padding on small screens */
+  section { padding-top: 64px !important; padding-bottom: 64px !important; }
+
+  /* Navbar padding on mobile */
+  nav { padding: 0 1rem !important; }
+
+  /* Service cards min-width fix */
+  .service-card { min-width: 0 !important; }
 }

@@ -46,7 +46,7 @@ export default function Hero() {
             iCreativeLabs adalah mitra teknologi terpercaya Anda — dari custom software, web & mobile app, hingga konsultasi IT strategis untuk mendorong pertumbuhan bisnis.
           </p>
 
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 48 }}>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 48 }} className="hero-btns">
             <a href="#kontak" className="btn-primary">
               Konsultasi Gratis
               <span style={{ fontSize: 16 }}>→</span>
@@ -57,7 +57,7 @@ export default function Hero() {
           </div>
 
           {/* Mini stats */}
-          <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }} className="hero-stats">
             {STATS.slice(0, 3).map((s) => (
               <div key={s.label}>
                 <div style={{ fontSize: 26, fontWeight: 800, color: t.blue, letterSpacing: '-0.03em' }}>{s.num}</div>
@@ -68,7 +68,7 @@ export default function Hero() {
         </div>
 
         {/* Right — visual card stack */}
-        <div style={{ position: 'relative', height: 480, animation: 'fadeIn 0.8s ease 0.3s both' }}>
+        <div style={{ position: 'relative', height: 480, animation: 'fadeIn 0.8s ease 0.3s both' }} className="hero-visual">
           {/* Main card */}
           <div style={{ position: 'absolute', top: 40, left: '5%', right: '5%', background: '#fff', borderRadius: 20, padding: '32px', boxShadow: t.shadowLg, border: `1px solid ${t.line}` }} className="float">
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20 }}>

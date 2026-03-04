@@ -23,6 +23,7 @@ export default function CTA() {
           overflow: 'hidden',
           ...(visible ? fadeUp : hidden),
         }}
+        className="cta-inner"
       >
         {/* Decorative */}
         <div style={{ position: 'absolute', top: -60, right: 120, width: 200, height: 200, border: '1px solid rgba(255,255,255,0.1)', borderRadius: '50%', pointerEvents: 'none' }} />
@@ -37,7 +38,7 @@ export default function CTA() {
           </p>
         </div>
 
-        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', position: 'relative', zIndex: 1, flexShrink: 0 }}>
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', position: 'relative', zIndex: 1, flexShrink: 0 }} className="cta-btns">
           <a
             href="#kontak"
             style={{ background: '#fff', color: t.blue, padding: '14px 28px', borderRadius: 8, fontWeight: 700, fontSize: 15, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'all 0.22s' }}

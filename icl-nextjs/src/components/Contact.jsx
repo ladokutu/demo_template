@@ -63,7 +63,7 @@ export default function Contact() {
               <div style={{ background: t.bg2, border: `1.5px solid ${t.line}`, borderRadius: 20, padding: '40px 36px', boxShadow: t.shadowMd }}>
                 <h3 style={{ fontSize: 20, fontWeight: 700, color: t.ink, marginBottom: 28, letterSpacing: '-0.02em' }}>Ceritakan Proyek Anda</h3>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 14 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 14 }} className="contact-form-row">
                   {[
                     { name: 'nama',       placeholder: 'Nama Anda', type: 'text' },
                     { name: 'email',      placeholder: 'Email Anda', type: 'email' },
@@ -79,7 +79,7 @@ export default function Contact() {
                     placeholder="Nama Perusahaan" style={inputStyle} className="form-input" suppressHydrationWarning />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 14 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 14 }} className="contact-form-row">
                   <select name="layanan" value={form.layanan} onChange={onChange}
                     style={{ ...inputStyle, color: form.layanan ? t.ink : t.ink4 }} className="form-input" suppressHydrationWarning>
                     <option value="">Jenis Layanan</option>

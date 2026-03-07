@@ -36,10 +36,10 @@ export default function Contact() {
             </p>
 
             {[
-              { icon: '📧', label: 'Email', val: 'hello@icreativelabs.com' },
-              { icon: '📞', label: 'Telepon / WhatsApp', val: '+62 22 1234 5678' },
-              { icon: '📍', label: 'Kantor', val: 'Bandung, Jawa Barat, Indonesia' },
-              { icon: '🕐', label: 'Jam Kerja', val: 'Senin–Jumat, 09.00–17.00 WIB' },
+              { icon: '📧', label: 'Email', val: 'support@ladokutu.info' },
+              { icon: '📞', label: 'Telepon / WhatsApp', val: '+6285156577357' },
+              { icon: '📍', label: 'Kantor', val: 'Pondok Kelapa, Jakarta Timur, Indonesia' },
+              { icon: '🕐', label: 'Jam Kerja', val: 'Senin–Jumat, 09.00–16.00 WIB' },
             ].map((c) => (
               <div key={c.label} style={{ display: 'flex', gap: 14, marginBottom: 20 }}>
                 <div style={{ width: 42, height: 42, background: t.blueLight, borderRadius: 10, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, flexShrink: 0 }}>{c.icon}</div>

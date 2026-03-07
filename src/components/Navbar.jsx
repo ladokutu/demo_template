@@ -27,11 +27,15 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
-          <div style={{ width: 36, height: 36, background: t.blue, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ color: '#fff', fontWeight: 900, fontSize: 16, fontFamily: 'Fraunces, serif' }}>iC</span>
-          </div>
+          <div style={{ width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+			  <img 
+				src="/logo512.png"
+				alt="Logo"
+				style={{ width: 36, height: 36, objectFit: 'contain' }}
+			  />
+			</div>
           <div>
-            <div style={{ fontWeight: 800, fontSize: 16, color: t.ink, letterSpacing: '-0.02em', lineHeight: 1 }}>iCreativeLabs</div>
+            <div style={{ fontWeight: 800, fontSize: 16, color: t.ink, letterSpacing: '-0.02em', lineHeight: 1 }}>Ladokutu Informasi</div>
             <div style={{ fontSize: 9, color: t.ink3, letterSpacing: '0.1em', textTransform: 'uppercase' }}>IT Consulting</div>
           </div>
         </Link>

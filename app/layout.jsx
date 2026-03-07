@@ -1,9 +1,9 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'iCreativeLabs — Konsultan IT & Custom Software Development Bandung',
-  description: 'iCreativeLabs adalah konsultan IT berpengalaman 13+ tahun di Bandung. Spesialisasi custom software development, web & mobile app, dan transformasi digital.',
-  keywords: 'konsultan IT Bandung, custom software development, web development, mobile app, transformasi digital',
+  title: 'Ladokutu Informasi — Konsultan IT & Custom Software Development Bandung',
+  description: 'Ladokutu Informasi adalah konsultan IT berpengalaman 13+ tahun di Bandung. Spesialisasi custom software development, web & mobile app, dan transformasi digital.',
+  keywords: 'Konsultan IT , custom software development, web development, mobile app, transformasi digital',
 };
 
 export default function RootLayout({ children }) {

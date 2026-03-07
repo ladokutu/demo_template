@@ -14,10 +14,10 @@ export default function Footer() {
               <div style={{ width: 36, height: 36, background: t.blue, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 <span style={{ color: '#fff', fontWeight: 900, fontSize: 14, fontFamily: 'Fraunces, serif' }}>iC</span>
               </div>
-              <span style={{ fontWeight: 800, fontSize: 16, letterSpacing: '-0.02em' }}>iCreativeLabs</span>
+              <span style={{ fontWeight: 800, fontSize: 16, letterSpacing: '-0.02em' }}>Ladokutu Informasi</span>
             </div>
             <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.55)', lineHeight: 1.8, maxWidth: 280, marginBottom: 24 }}>
-              Konsultan IT & Custom Software Development terpercaya di Bandung sejak 2010. Kami membantu bisnis Indonesia bertransformasi digital.
+              Konsultan IT & Custom Software Development sejak 2017. Kami membantu bisnis Indonesia bertransformasi digital.
             </p>
             <div style={{ display: 'flex', gap: 10 }}>
               {['LinkedIn', 'Instagram', 'GitHub'].map((s) => (
@@ -52,9 +52,9 @@ export default function Footer() {
           <div>
             <h4 style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 20 }}>Kontak</h4>
             {[
-              { icon: '📧', val: 'hello@icreativelabs.com' },
-              { icon: '📞', val: '+62 22 1234 5678' },
-              { icon: '📍', val: 'Bandung, Jawa Barat' },
+              { icon: '📧', val: 'support@ladokutu.info' },
+              { icon: '📞', val: '+628515657757' },
+              { icon: '📍', val: 'Pondok Kelapa, Jakarta Timur' },
             ].map((c) => (
               <div key={c.val} style={{ display: 'flex', gap: 10, marginBottom: 14, alignItems: 'flex-start' }}>
                 <span style={{ fontSize: 14, flexShrink: 0, marginTop: 1 }}>{c.icon}</span>
@@ -67,7 +67,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '24px 0', flexWrap: 'wrap', gap: 12 }}>
           <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.35)' }}>
-            © {new Date().getFullYear()} iCreativeLabs. All rights reserved.
+            © {new Date().getFullYear()} Ladokutu Informasi. All rights reserved.
           </p>
           <div style={{ display: 'flex', gap: 24 }}>
             {['Kebijakan Privasi', 'Syarat & Ketentuan'].map((l) => (

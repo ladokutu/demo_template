@@ -29,7 +29,7 @@ export default function Hero() {
         <div style={{ animation: 'fadeUp 0.6s ease forwards' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: t.blueMid, border: `1px solid rgba(27,110,243,0.2)`, borderRadius: 100, padding: '6px 14px', fontSize: 12, fontWeight: 600, color: t.blue, marginBottom: 28, letterSpacing: '0.02em' }}>
             <span style={{ width: 6, height: 6, background: t.green, borderRadius: '50%', display: 'inline-block' }} />
-            13+ Tahun Melayani Klien Indonesia
+            7+ Tahun Melayani Klien Indonesia
           </div>
 
           <h1 style={{ fontSize: 'clamp(36px, 5vw, 58px)', fontWeight: 800, lineHeight: 1.08, letterSpacing: '-0.03em', color: t.ink, marginBottom: 8 }}>

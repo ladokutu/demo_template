@@ -17,7 +17,7 @@ export default function Stats() {
           <h2 style={{ fontSize: 'clamp(24px, 3.5vw, 38px)', fontWeight: 800, color: '#fff', letterSpacing: '-0.03em' }}>
             Angka yang Bicara Sendiri
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 16, marginTop: 10 }}>13 tahun kepercayaan klien Indonesia</p>
+          <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: 16, marginTop: 10 }}>7 tahun kepercayaan klien Indonesia</p>
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2, background: 'rgba(255,255,255,0.08)', borderRadius: 16, overflow: 'hidden' }} className="stats-row">

@@ -2,8 +2,8 @@ import './globals.css';
 import Script from "next/script";
 
 export const metadata = {
-  title: 'Ladokutu Informasi — Konsultan IT & Custom Software Development Bandung',
-  description: 'Ladokutu Informasi adalah konsultan IT berpengalaman 13+ tahun di Bandung. Spesialisasi custom software development, web & mobile app, dan transformasi digital.',
+  title: 'Ladokutu Informasi — Konsultan IT & Custom Software Development',
+  description: 'Ladokutu Informasi adalah konsultan IT berpengalaman 7+ tahun. Spesialisasi custom software development, web & mobile app, dan transformasi digital.',
   keywords: 'Konsultan IT , custom software development, web development, mobile app, transformasi digital',
 };
 

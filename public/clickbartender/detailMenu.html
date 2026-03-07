@@ -1,0 +1,300 @@
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+<title>Ladokutu Info</title>
+<link rel="stylesheet" type="text/css" href="../styles/bootstrap.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../fonts/css/fontawesome-all.min.css">
+<link rel="apple-touch-icon" sizes="57x57" href="../app/icons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="../app/icons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../app/icons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="../app/icons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../app/icons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="../app/icons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="../app/icons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="../app/icons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../app/icons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="../app/icons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../app/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="../app/icons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../app/icons/favicon-16x16.png">
+<link rel="manifest" href="../manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="../app/icons/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<script data-ad-client="ca-pub-5978328351134233" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5978328351134233"
+     crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.21.2/bootstrap-vue.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "d1241d79-9504-430d-90da-d19ef3cbe270",
+    });
+  });
+</script>
+
+</head>
+
+
+
+<body class="theme-light">
+	
+
+
+<div id="main" >
+	<v-app>
+		<v-main >
+				
+				
+				<v-app-bar app>
+				<v-toolbar
+					color="indigo"
+					dark fixed-header
+				>
+						  <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+						  <v-toolbar-title>Click Bartender</v-toolbar-title>
+						  <v-spacer></v-spacer> 
+				</v-toolbar>
+				</v-app-bar>	   
+			
+					
+					<v-container fluid>
+						<v-row dense>
+							<v-col :cols="12">
+							<v-card
+								:loading="loading"
+								class="mx-auto my-12"
+							  >
+								<template slot="progress">
+								  <v-progress-linear
+									color="deep-purple"
+									height="10"
+									indeterminate
+								  ></v-progress-linear>
+								</template>
+
+								<v-img
+								  height="300" contain
+								  :src="menu.url_image"
+								  
+								></v-img>
+
+								
+								<v-card-title>
+								{{menu.nama_menu}}
+								</v-card-title>
+								<v-card-text>
+								  <v-row
+									align="center"
+									class="mx-0"
+								  >
+									<v-text v-html='menu.detail'></v-text>
+								  </v-row>
+
+								  <div class="my-4 text-subtitle-1">
+									View On Appliction
+								  </div>
+								  <div><a href="https://play.google.com/store/apps/details?id=com.ladokutu.clickbartender"
+											  target="_blank">
+											  <v-img
+												  max-height="62" max-width="160"
+												  src="	https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png"
+											  ></v-img> 
+										</a>
+										<a href="https://www.amazon.com/Ladokutu-Click-Bartender/dp/B09Q21RDH7/ref=mp_s_a_1_1?crid=1JNIYKUEGG6PD&keywords=click+bartender&qid=1643276191&s=mobile-apps&sprefix=click+bar%2Caps%2C760&sr=1-1"
+											  target="_blank">
+											  <v-img
+												  max-height="62" max-width="160"
+												  src="	https://exelerus.com/mobiledev/amazon/img/background2.png"
+											  ></v-img> 
+										</a>
+										
+								  </div>
+								  <div>The Click Bartender application is designed with features that make it easy to manage the ingredients you have and get simple steps to make drinks based on the menu you choose.</div>
+								  <div>Click Bartender Features:</div>
+								  <div>Menu List : there is a list of drink menus that you can make, starting from the ingredients needed, the steps for making instructions and the selected glass</div>
+								  <div>Ingredient List : to see the detailed ingredients of your favorite drink</div>
+								  <div>Glass List : to see the details of the glasses used of your favorite drink</div>
+								  <div>Settings: information from the click bartender app</div>
+								  <div>Contact : <a href="mailto:support@ladokutu.info">support@ladokutu.info</a></div>
+								  <div><v-btn color="blue-grey"
+											  class="ma-2 white--text"
+											  href="https://www.buymeacoffee.com/ladokutu"
+											  target="_blank">
+											  <v-img
+												  max-height="32" max-width="16"
+												  src="https://bmc-dev.s3.us-east-2.amazonaws.com/assets/icons/bmc_icon_black.png"
+											  ></v-img>  Buy me a Coffe  
+										</v-btn>
+										<v-btn 
+											  href="bitcoin:1BaADxL8fXjn1bxak96oUTnEc5u8wAUc4U"
+											  target="_blank">
+											  <v-img
+												  max-height="32" max-width="32"
+												  src="https://s2.coinmarketcap.com/static/img/coins/200x200/1.png"
+											  ></v-img>  Bitcoin 
+										</v-btn>
+									</div>
+								</v-card-text>
+
+								<v-divider class="mx-4"></v-divider>
+
+								<v-card-title><a href="./privacy.html">Privacy Policies</a> </v-card-title>
+								<v-card-title><a href="./term.html">Term Of Use</a></v-card-title>
+								
+
+								
+							  </v-card>
+							  </v-col>
+						</v-row>
+					</v-container>
+					
+					 <v-spacer></v-spacer> 				
+					<v-footer app>		
+						<v-bottom-navigation 	  
+							absolute
+							color="red"
+							grow
+						>
+							<v-btn v-for="(item, i) in master"
+								:href="item.url">
+								<span>{{item.nama_menu}}</span>
+								<v-icon>{{ item.icon }}</v-icon>
+							</v-btn>
+						</v-bottom-navigation>
+					</v-footer>		  
+					<v-navigation-drawer app
+					v-model="drawer"
+						>
+							<v-list dense>
+								<v-list-item>
+									<v-list-item-avatar>
+											  <v-img src="https://core.ladokutu.info/include/images/ladokutu_info.png"></v-img>
+											</v-list-item-avatar>
+
+											<v-list-item-content>
+											  <v-list-item-title>Ladokutu Info</v-list-item-title>
+											</v-list-item-content>
+									</v-list-item>
+
+									<v-divider></v-divider>
+									<v-list-item
+										  v-for="(item, i) in master" 
+										  :key="i" 
+										  :href="item.url"
+										>
+										  <v-list-item-icon>
+											<v-icon>{{ item.icon }}</v-icon>
+										  </v-list-item-icon>
+										  <v-list-item-content>
+											<v-list-item-title>{{ item.nama_menu }}</v-list-item-title>
+										  </v-list-item-content>
+									</v-list-item>
+							</v-list>
+						</v-navigation-drawer>	  
+				
+					<v-overlay :value="loading">
+						  <v-progress-circular
+							indeterminate
+							size="64"
+						  ></v-progress-circular>
+					</v-overlay>
+				
+		</v-main>
+	</v-app>		 
+</div>
+
+<!-- Google -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5978328351134233" crossorigin="anonymous"></script>
+<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>	
+<!-- Google -->
+
+<script src="https://unpkg.com/vue-router"></script>
+
+<script src="scripts/vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/material-icons"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-vue/2.21.2/bootstrap-vue.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vuetify@2.6.1/dist/vuetify.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+
+	
+</body>	  
+
+		  
+			  
+<script>
+var router = new VueRouter({
+    mode: 'history',
+    routes: []
+});
+
+new Vue({
+		router,	
+		el: '#main',
+		vuetify: new Vuetify(),
+		data: {
+			loading: false,
+			drawer: false,
+			master: [],
+			projects: [],
+			show: false,
+			selection: 1,
+			id_menu:'',
+			menu:'',
+		},
+		mounted(){
+			this.getItems();
+			id_menu = this.$route.query.id;
+			console.log(id_menu)
+			this.getDetailMenu(id_menu);
+		},
+		methods: {
+			getItems: function () {
+				this.loading = true;
+				axios.get('https://core.ladokutu.info/index.php/Web/menu_web')
+					.then(res => {
+					this.master=res.data;
+				})
+				.catch(err => {
+					console.log(err);
+				})
+				this.loading = false;
+			},
+			getDetailMenu: function (id_menu) {
+				this.loading = true;
+				axios.get('https://core.ladokutu.info/index.php/Bartender/detail_data_menu_bartender/'+id_menu)
+					.then(res => {
+					this.menu=res.data;
+				})
+				.catch(err => {
+					console.log(err);
+				})
+				this.loading = false;
+			},
+			reserve () {
+				this.loading = true
+
+				setTimeout(() => (this.loading = false), 2000)
+			  },
+			
+			handlePageChange(value) {
+			  this.currentPage = value;
+			  this.getMovie();
+			},
+			
+			  
+			  
+			
+		}
+})
+</script>

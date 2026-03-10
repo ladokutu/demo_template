@@ -43,7 +43,7 @@ export default function Hero() {
           </h1>
 
           <p style={{ fontSize: 18, color: t.ink3, lineHeight: 1.7, maxWidth: 500, marginBottom: 36 }}>
-            iCreativeLabs adalah mitra teknologi terpercaya Anda — dari custom software, web & mobile app, hingga konsultasi IT strategis untuk mendorong pertumbuhan bisnis.
+            Ladokutu Informasi adalah mitra teknologi terpercaya Anda — dari custom software, web & mobile app, hingga konsultasi IT strategis untuk mendorong pertumbuhan bisnis.
           </p>
 
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 48 }} className="hero-btns">

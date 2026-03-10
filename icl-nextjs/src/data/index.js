@@ -80,7 +80,7 @@ export const TESTIMONIALS = [
     role: 'CEO, TokoBaju.id',
     avatar: 'AK',
     rating: 5,
-    text: 'iCreativeLabs membangun platform e-commerce kami dari nol. Hasilnya luar biasa — performa tinggi, desain elegan, dan selesai tepat waktu. Tim mereka sangat profesional dan komunikatif.',
+    text: 'Ladokutu Informasi membangun platform e-commerce kami dari nol. Hasilnya luar biasa — performa tinggi, desain elegan, dan selesai tepat waktu. Tim mereka sangat profesional dan komunikatif.',
   },
   {
     name: 'Siti Rahayu',
@@ -94,7 +94,7 @@ export const TESTIMONIALS = [
     role: 'CTO, LogisTech Indonesia',
     avatar: 'DP',
     rating: 5,
-    text: 'Dashboard logistik yang dibangun iCreativeLabs meningkatkan efisiensi operasional kami hingga 40%. Kode bersih, dokumentasi lengkap, dan support purna jual sangat responsif.',
+    text: 'Dashboard logistik yang dibangun Ladokutu Informasi meningkatkan efisiensi operasional kami hingga 40%. Kode bersih, dokumentasi lengkap, dan support purna jual sangat responsif.',
   },
 ];
 

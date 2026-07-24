@@ -3,7 +3,7 @@
 
   <!-- Homepage -->
   <url>
-    <loc>https://ladokutu.info/</loc>
+    <loc>https://www.ladokutu.info/</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -11,35 +11,35 @@
 
   <!-- Section anchors (one-page website) -->
   <url>
-    <loc>https://ladokutu.info/#layanan</loc>
+    <loc>https://www.ladokutu.info/#layanan</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://ladokutu.info/#cara-kerja</loc>
+    <loc>https://www.ladokutu.info/#cara-kerja</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://ladokutu.info/#portofolio</loc>
+    <loc>https://www.ladokutu.info/#portofolio</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://ladokutu.info/#tentang</loc>
+    <loc>https://www.ladokutu.info/#tentang</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://ladokutu.info/#kontak</loc>
+    <loc>https://www.ladokutu.info/#kontak</loc>
     <lastmod>2026-03-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>

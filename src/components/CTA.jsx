@@ -48,7 +48,7 @@ export default function CTA() {
             Mulai Sekarang →
           </a>
           <a
-            href="tel:+62222222222"
+            href="tel:+6285156577357"
             style={{ background: 'transparent', color: '#fff', border: '1.5px solid rgba(255,255,255,0.5)', padding: '13px 24px', borderRadius: 8, fontWeight: 600, fontSize: 14, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'all 0.22s' }}
             onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
             onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; }}

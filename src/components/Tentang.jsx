@@ -17,8 +17,19 @@ const VALUES = [
   { icon: '🚀', title: 'Inovasi',           desc: 'Kami terus belajar dan mengadopsi teknologi terkini untuk solusi yang relevan dan modern.' },
 ];
 
-export default function Tentang() {
+export default function Tentang({ teamMembers }) {
   const [ref, visible] = useVisible();
+
+  // Use CMS data if available, fallback to hardcoded TEAM
+  const team = (teamMembers && teamMembers.length > 0)
+    ? teamMembers.map((m) => ({
+        name: m.name,
+        role: m.role,
+        avatar: m.avatar || m.name?.split(' ').map(w => w[0]).join('').substring(0,2).toUpperCase(),
+        color: m.color || '#1B6EF3',
+        image_url: m.image_url || null,
+      }))
+    : TEAM;
 
   return (
     <section ref={ref} id="tentang" style={{ background: '#fff', padding: '100px 2rem' }}>
@@ -113,7 +124,7 @@ export default function Tentang() {
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 16 }} className="team-grid">
-            {TEAM.map((member, i) => (
+            {team.map((member, i) => (
               <div
                 key={member.name}
                 style={{
@@ -129,9 +140,15 @@ export default function Tentang() {
                 onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = t.shadowMd; e.currentTarget.style.borderColor = member.color; }}
                 onMouseLeave={(e) => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = t.line; }}
               >
-                <div style={{ width: 56, height: 56, background: `${member.color}18`, border: `2px solid ${member.color}40`, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 16, color: member.color, margin: '0 auto 12px' }}>
-                  {member.avatar}
-                </div>
+                {member.image_url ? (
+                  <div style={{ width: 56, height: 56, borderRadius: '50%', overflow: 'hidden', border: `2px solid ${member.color}40`, margin: '0 auto 12px' }}>
+                    <img src={member.image_url} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                ) : (
+                  <div style={{ width: 56, height: 56, background: `${member.color}18`, border: `2px solid ${member.color}40`, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: 16, color: member.color, margin: '0 auto 12px' }}>
+                    {member.avatar}
+                  </div>
+                )}
                 <div style={{ fontWeight: 700, fontSize: 13, color: t.ink, marginBottom: 4, lineHeight: 1.3 }}>{member.name}</div>
                 <div style={{ fontSize: 11, color: t.ink3, lineHeight: 1.4 }}>{member.role}</div>
               </div>

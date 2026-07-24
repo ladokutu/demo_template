@@ -3,8 +3,40 @@ import { useVisible } from '@/src/hooks/useVisible';
 import { SERVICES } from '@/src/data';
 import { t, fadeUp, fadeUpD, hidden } from '@/src/styles/shared';
 
-export default function Services() {
+function ServiceSkeleton() {
+  return (
+    <div style={{ background: '#fff', border: '1.5px solid #E5E7EB', borderRadius: 16, padding: '32px 28px' }}>
+      <div style={{ width: 52, height: 52, borderRadius: 12, background: '#E5E7EB', marginBottom: 20, animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ width: '60%', height: 16, borderRadius: 6, background: '#E5E7EB', marginBottom: 10, animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ width: '100%', height: 12, borderRadius: 6, background: '#E5E7EB', marginBottom: 6, animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ width: '80%', height: 12, borderRadius: 6, background: '#E5E7EB', marginBottom: 20, animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ width: '90%', height: 10, borderRadius: 6, background: '#E5E7EB', marginBottom: 6, animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ width: '70%', height: 10, borderRadius: 6, background: '#E5E7EB', animation: 'shimmer 1.5s infinite' }} />
+    </div>
+  );
+}
+
+export default function Services({ items, loading }) {
   const [ref, visible] = useVisible();
+
+  if (loading && (!items || items.length === 0)) {
+    return (
+      <section style={{ background: '#fff', padding: '100px 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 64 }}>
+            <div style={{ width: 100, height: 24, borderRadius: 100, background: '#E5E7EB', margin: '0 auto 16px', animation: 'shimmer 1.5s infinite' }} />
+            <div style={{ width: '50%', height: 32, borderRadius: 8, background: '#E5E7EB', margin: '0 auto 16px', animation: 'shimmer 1.5s infinite' }} />
+            <div style={{ width: '40%', height: 14, borderRadius: 6, background: '#E5E7EB', margin: '0 auto', animation: 'shimmer 1.5s infinite' }} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))', gap: 24 }}>
+            <ServiceSkeleton /><ServiceSkeleton /><ServiceSkeleton />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const svcList = items && items.length > 0 ? items : SERVICES;
 
   return (
     <section ref={ref} id="layanan" style={{ background: '#fff', padding: '100px 2rem' }}>
@@ -25,7 +57,7 @@ export default function Services() {
 
         {/* Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(340px, 100%), 1fr))', gap: 24 }} className="three-col">
-          {SERVICES.map((svc, i) => (
+          {svcList.map((svc, i) => (
             <div
               key={svc.title}
               style={{

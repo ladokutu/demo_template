@@ -57,7 +57,7 @@ export default function Contact() {
               <div style={{ background: t.blueLight, border: `1.5px solid rgba(27,110,243,0.2)`, borderRadius: 20, padding: '56px 40px', textAlign: 'center' }}>
                 <div style={{ fontSize: 56, marginBottom: 20 }}>🎉</div>
                 <h3 style={{ fontSize: 24, fontWeight: 800, color: t.ink, marginBottom: 12 }}>Pesan Terkirim!</h3>
-                <p style={{ fontSize: 15, color: t.ink3, lineHeight: 1.7 }}>Terima kasih telah menghubungi iCreativeLabs.<br />Tim kami akan merespons dalam 1×24 jam kerja.</p>
+                <p style={{ fontSize: 15, color: t.ink3, lineHeight: 1.7 }}>Terima kasih telah menghubungi Ladokutu Team.<br />Tim kami akan merespons dalam 1×24 jam kerja.</p>
               </div>
             ) : (
               <div style={{ background: t.bg2, border: `1.5px solid ${t.line}`, borderRadius: 20, padding: '40px 36px', boxShadow: t.shadowMd }}>

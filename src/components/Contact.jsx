@@ -6,11 +6,31 @@ import { t, fadeUp, fadeUpD, hidden } from '@/src/styles/shared';
 
 export default function Contact() {
   const [ref, visible] = useVisible();
-  const [form, setForm] = useState({ nama: '', email: '', perusahaan: '', layanan: '', budget: '', pesan: '' });
+  const [form, setForm] = useState({ nama: '', email: '', telepon: '', perusahaan: '', layanan: '', budget: '', pesan: '' });
   const [sent, setSent] = useState(false);
 
   const onChange = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
-  const onSubmit = () => { console.log(form); setSent(true); };
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
+
+  const onSubmit = async () => {
+    setSending(true);
+    setError('');
+    try {
+      const res = await fetch('/api/messages', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.message || 'Gagal mengirim');
+      setSent(true);
+    } catch (err) {
+      setError(err.message || 'Terjadi kesalahan. Silakan coba lagi.');
+    } finally {
+      setSending(false);
+    }
+  };
 
   const inputStyle = {
     width: '100%', background: '#fff', border: `1.5px solid ${t.line}`, color: t.ink,
@@ -57,11 +77,11 @@ export default function Contact() {
               <div style={{ background: t.blueLight, border: `1.5px solid rgba(27,110,243,0.2)`, borderRadius: 20, padding: '56px 40px', textAlign: 'center' }}>
                 <div style={{ fontSize: 56, marginBottom: 20 }}>🎉</div>
                 <h3 style={{ fontSize: 24, fontWeight: 800, color: t.ink, marginBottom: 12 }}>Pesan Terkirim!</h3>
-                <p style={{ fontSize: 15, color: t.ink3, lineHeight: 1.7 }}>Terima kasih telah menghubungi iCreativeLabs.<br />Tim kami akan merespons dalam 1×24 jam kerja.</p>
+<p style={{ fontSize: 15, color: t.ink3, lineHeight: 1.7 }}>Terima kasih telah menghubungi Ladokutu Team.<br />Tim kami akan merespons dalam 1×24 jam kerja.</p>
               </div>
             ) : (
               <div style={{ background: t.bg2, border: `1.5px solid ${t.line}`, borderRadius: 20, padding: '40px 36px', boxShadow: t.shadowMd }}>
-                <h3 style={{ fontSize: 20, fontWeight: 700, color: t.ink, marginBottom: 28, letterSpacing: '-0.02em' }}>Ceritakan Proyek Anda</h3>
+                <h3 style={{ fontSize: 20, fontWeight: 700, color: t.ink, marginBottom: 28, letterSpacing: '-0.02em' }}>Hubungi Kami</h3>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 14 }} className="contact-form-row">
                   {[
@@ -74,7 +94,10 @@ export default function Contact() {
                   ))}
                 </div>
 
-                <div style={{ marginBottom: 14 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, marginBottom: 14 }} className="contact-form-row">
+                  <input name="telepon" type="tel" value={form.telepon}
+                    onChange={onChange} placeholder="No. Telepon / WhatsApp"
+                    style={inputStyle} className="form-input" suppressHydrationWarning />
                   <input name="perusahaan" value={form.perusahaan} onChange={onChange}
                     placeholder="Nama Perusahaan" style={inputStyle} className="form-input" suppressHydrationWarning />
                 </div>
@@ -100,8 +123,14 @@ export default function Contact() {
                     style={{ ...inputStyle, minHeight: 110, resize: 'vertical' }} className="form-input" suppressHydrationWarning />
                 </div>
 
-                <button onClick={onSubmit} className="btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '15px 28px', fontSize: 15 }}>
-                  Kirim Pesan → 
+                {error && (
+                  <div style={{ background: '#FEF2F2', border: '1.5px solid #FECACA', color: '#B91C1C', borderRadius: 8, padding: '10px 16px', fontSize: 13, marginBottom: 16, fontWeight: 500 }}>
+                    ⚠ {error}
+                  </div>
+                )}
+
+                <button onClick={onSubmit} disabled={sending} className="btn-primary" style={{ width: '100%', justifyContent: 'center', padding: '15px 28px', fontSize: 15, opacity: sending ? 0.7 : 1, cursor: sending ? 'not-allowed' : 'pointer' }}>
+                  {sending ? 'Mengirim...' : 'Kirim Pesan →'}
                 </button>
 
                 <p style={{ fontSize: 12, color: t.ink4, textAlign: 'center', marginTop: 14 }}>

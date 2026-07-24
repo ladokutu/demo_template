@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { NAV_LINKS } from '@/src/data';
 import { t } from '@/src/styles/shared';
 
-export default function Navbar() {
+export default function Navbar({ links }) {
+  const navItems = links && links.length > 0 ? links : NAV_LINKS;
   const [open,     setOpen]     = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -42,7 +43,7 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 4 }} className="nav-desktop">
-          {NAV_LINKS.map(({ label, href }) => (
+          {navItems.map(({ label, href }) => (
             <a key={label} href={href} style={{ color: t.ink2, textDecoration: 'none', fontSize: 14, fontWeight: 500, padding: '8px 14px', borderRadius: 6 }} className="nav-link">
               {label}
             </a>
@@ -66,7 +67,7 @@ export default function Navbar() {
       {/* Mobile drawer */}
       {open && (
         <div style={{ background: '#fff', borderTop: `1px solid ${t.line}`, padding: '1rem 2rem 1.5rem', display: 'flex', flexDirection: 'column', gap: 2 }}>
-          {NAV_LINKS.map(({ label, href }) => (
+          {navItems.map(({ label, href }) => (
             <a key={label} href={href} style={{ color: t.ink2, textDecoration: 'none', fontSize: 16, padding: '12px 0', borderBottom: `1px solid ${t.line}` }} onClick={() => setOpen(false)}>
               {label}
             </a>

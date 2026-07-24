@@ -3,12 +3,39 @@ import { useVisible } from '@/src/hooks/useVisible';
 import { STATS } from '@/src/data';
 import { t, fadeUpD, hidden } from '@/src/styles/shared';
 
-export default function Stats() {
+function StatsSkeleton() {
+  return (
+    <div style={{ padding: '40px 24px', textAlign: 'center' }}>
+      <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'rgba(255,255,255,0.15)', margin: '0 auto 8px', animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ width: 80, height: 36, borderRadius: 8, background: 'rgba(255,255,255,0.15)', margin: '0 auto 8px', animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ width: 100, height: 12, borderRadius: 6, background: 'rgba(255,255,255,0.1)', margin: '0 auto', animation: 'shimmer 1.5s infinite' }} />
+    </div>
+  );
+}
+
+export default function Stats({ items, loading }) {
   const [ref, visible] = useVisible(0.2);
+
+  if (loading && (!items || items.length === 0)) {
+    return (
+      <section style={{ background: 'linear-gradient(135deg, #1B6EF3 0%, #1458CC 100%)', padding: '80px 2rem', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 56 }}>
+            <div style={{ width: 300, height: 28, borderRadius: 8, background: 'rgba(255,255,255,0.15)', margin: '0 auto 10px', animation: 'shimmer 1.5s infinite' }} />
+            <div style={{ width: 200, height: 14, borderRadius: 6, background: 'rgba(255,255,255,0.1)', margin: '0 auto', animation: 'shimmer 1.5s infinite' }} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2, background: 'rgba(255,255,255,0.08)', borderRadius: 16, overflow: 'hidden' }} className="stats-row">
+            <StatsSkeleton /><StatsSkeleton /><StatsSkeleton /><StatsSkeleton />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const statsList = items && items.length > 0 ? items : STATS;
 
   return (
     <section ref={ref} style={{ background: `linear-gradient(135deg, ${t.blue} 0%, #1458CC 100%)`, padding: '80px 2rem', position: 'relative', overflow: 'hidden' }}>
-      {/* Decorative */}
       <div style={{ position: 'absolute', top: -80, right: -80, width: 300, height: 300, border: '1px solid rgba(255,255,255,0.08)', borderRadius: '50%', pointerEvents: 'none' }} />
       <div style={{ position: 'absolute', bottom: -60, left: '20%', width: 200, height: 200, border: '1px solid rgba(255,255,255,0.08)', borderRadius: '50%', pointerEvents: 'none' }} />
 
@@ -21,7 +48,7 @@ export default function Stats() {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2, background: 'rgba(255,255,255,0.08)', borderRadius: 16, overflow: 'hidden' }} className="stats-row">
-          {STATS.map((s, i) => (
+          {statsList.map((s, i) => (
             <div
               key={s.label}
               style={{

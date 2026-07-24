@@ -1,8 +1,9 @@
 import { PARTNERS } from '@/src/data';
 import { t } from '@/src/styles/shared';
 
-export default function Partners() {
-  const doubled = [...PARTNERS, ...PARTNERS];
+export default function Partners({ items }) {
+  const partnerList = items && items.length > 0 ? items : PARTNERS;
+  const doubled = [...partnerList, ...partnerList];
   return (
     <section style={{ background: '#fff', padding: '32px 0', borderTop: `1px solid ${t.line}`, borderBottom: `1px solid ${t.line}`, overflow: 'hidden' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 2rem', textAlign: 'center', marginBottom: 20 }}>

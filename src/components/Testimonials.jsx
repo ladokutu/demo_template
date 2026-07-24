@@ -3,8 +3,46 @@ import { useVisible } from '@/src/hooks/useVisible';
 import { TESTIMONIALS } from '@/src/data';
 import { t, fadeUp, fadeUpD, hidden } from '@/src/styles/shared';
 
-export default function Testimonials() {
+function TestimonialSkeleton() {
+  return (
+    <div style={{ background: '#fff', border: '1.5px solid #E5E7EB', borderRadius: 16, padding: '32px 28px' }}>
+      <div style={{ display: 'flex', gap: 3, marginBottom: 20 }}>
+        {[...Array(5)].map((_, j) => <div key={j} style={{ width: 16, height: 16, borderRadius: 3, background: '#E5E7EB', animation: 'shimmer 1.5s infinite' }} />)}
+      </div>
+      <div style={{ width: '100%', height: 12, borderRadius: 6, background: '#E5E7EB', marginBottom: 6, animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ width: '90%', height: 12, borderRadius: 6, background: '#E5E7EB', marginBottom: 6, animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ width: '70%', height: 12, borderRadius: 6, background: '#E5E7EB', marginBottom: 28, animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 20, borderTop: '1px solid #E5E7EB' }}>
+        <div style={{ width: 44, height: 44, borderRadius: '50%', background: '#E5E7EB', animation: 'shimmer 1.5s infinite' }} />
+        <div>
+          <div style={{ width: 100, height: 12, borderRadius: 6, background: '#E5E7EB', marginBottom: 6, animation: 'shimmer 1.5s infinite' }} />
+          <div style={{ width: 140, height: 10, borderRadius: 6, background: '#E5E7EB', animation: 'shimmer 1.5s infinite' }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Testimonials({ items, loading }) {
   const [ref, visible] = useVisible();
+
+  if (loading && (!items || items.length === 0)) {
+    return (
+      <section style={{ background: t.bg2, padding: '100px 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 60 }}>
+            <div style={{ width: 100, height: 24, borderRadius: 100, background: '#E5E7EB', margin: '0 auto 16px', animation: 'shimmer 1.5s infinite' }} />
+            <div style={{ width: 280, height: 32, borderRadius: 8, background: '#E5E7EB', margin: '0 auto', animation: 'shimmer 1.5s infinite' }} />
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }} className="three-col">
+            <TestimonialSkeleton /><TestimonialSkeleton /><TestimonialSkeleton />
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const testimonialList = items && items.length > 0 ? items : TESTIMONIALS;
 
   return (
     <section ref={ref} style={{ background: t.bg2, padding: '100px 2rem' }}>
@@ -20,7 +58,7 @@ export default function Testimonials() {
         </div>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 24 }} className="three-col">
-          {TESTIMONIALS.map((testi, i) => (
+          {testimonialList.map((testi, i) => (
             <div
               key={testi.name}
               style={{

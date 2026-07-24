@@ -3,8 +3,43 @@ import { useVisible } from '@/src/hooks/useVisible';
 import { PROCESS_STEPS } from '@/src/data';
 import { t, fadeUp, fadeUpD, hidden } from '@/src/styles/shared';
 
-export default function HowWeWork() {
+function StepSkeleton() {
+  return (
+    <div style={{ display: 'flex', gap: 20, padding: '24px 0' }}>
+      <div style={{ width: 44, height: 44, borderRadius: 10, background: '#E5E7EB', flexShrink: 0, animation: 'shimmer 1.5s infinite' }} />
+      <div style={{ flex: 1 }}>
+        <div style={{ width: '50%', height: 14, borderRadius: 6, background: '#E5E7EB', marginBottom: 8, animation: 'shimmer 1.5s infinite' }} />
+        <div style={{ width: '80%', height: 12, borderRadius: 6, background: '#E5E7EB', animation: 'shimmer 1.5s infinite' }} />
+      </div>
+    </div>
+  );
+}
+
+export default function HowWeWork({ steps, loading }) {
   const [ref, visible] = useVisible();
+
+  if (loading && (!steps || steps.length === 0)) {
+    return (
+      <section style={{ background: t.bg2, padding: '100px 2rem' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'center' }} className="two-col">
+            <div>
+              <div style={{ width: 120, height: 24, borderRadius: 100, background: '#E5E7EB', marginBottom: 20, animation: 'shimmer 1.5s infinite' }} />
+              <div style={{ width: '70%', height: 32, borderRadius: 8, background: '#E5E7EB', marginBottom: 16, animation: 'shimmer 1.5s infinite' }} />
+              <div style={{ width: '90%', height: 14, borderRadius: 6, background: '#E5E7EB', marginBottom: 8, animation: 'shimmer 1.5s infinite' }} />
+              <div style={{ width: '60%', height: 14, borderRadius: 6, background: '#E5E7EB', marginBottom: 32, animation: 'shimmer 1.5s infinite' }} />
+              <div style={{ width: 180, height: 48, borderRadius: 8, background: '#E5E7EB', animation: 'shimmer 1.5s infinite' }} />
+            </div>
+            <div>
+              <StepSkeleton /><StepSkeleton /><StepSkeleton /><StepSkeleton />
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  const stepList = steps && steps.length > 0 ? steps : PROCESS_STEPS;
 
   return (
     <section ref={ref} id="cara-kerja" style={{ background: t.bg2, padding: '100px 2rem' }}>
@@ -30,14 +65,14 @@ export default function HowWeWork() {
 
           {/* Right steps */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-            {PROCESS_STEPS.map((step, i) => (
+            {stepList.map((step, i) => (
               <div
                 key={step.num}
                 style={{
                   display: 'flex',
                   gap: 20,
                   padding: '24px 0',
-                  borderBottom: i < PROCESS_STEPS.length - 1 ? `1px solid ${t.line}` : 'none',
+                  borderBottom: i < stepList.length - 1 ? `1px solid ${t.line}` : 'none',
                   ...(visible ? fadeUpD(i * 0.12) : hidden),
                 }}
               >

@@ -125,7 +125,7 @@ function normalizeItem(item, section) {
         text: base.text,
       };
     case 'partners':
-      return base.name;
+      return { name: base.name, logo_url: base.logo_url || null };
     case 'nav_links':
       return { label: base.label, href: base.href };
     default:

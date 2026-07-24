@@ -11,11 +11,16 @@ export default function Partners({ items }) {
       </div>
       <div style={{ overflow: 'hidden', position: 'relative' }}>
         <div style={{ display: 'flex', gap: 48, width: 'max-content' }} className="marquee-track">
-          {doubled.map((name, i) => (
-            <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 24px', background: t.bg2, borderRadius: 8, border: `1px solid ${t.line}`, whiteSpace: 'nowrap', fontSize: 14, fontWeight: 600, color: t.ink3 }} className="partner-logo">
-              {name}
-            </div>
-          ))}
+          {doubled.map((partner, i) => {
+            const p = typeof partner === 'string' ? { name: partner, logo_url: null } : partner;
+            return (
+              <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 24px', background: t.bg2, borderRadius: 8, border: `1px solid ${t.line}`, whiteSpace: 'nowrap', fontSize: 14, fontWeight: 600, color: t.ink3 }} className="partner-logo">
+                {p.logo_url ? (
+                  <img src={p.logo_url} alt={p.name} style={{ height: 24, maxWidth: 100, objectFit: 'contain' }} />
+                ) : p.name}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

@@ -11,6 +11,7 @@ const TABLE_MAP = {
   team_members: 'team_members',
   company_values: 'company_values',
   nav_links: 'nav_links',
+  page_sections: 'page_sections',
 };
 
 const UPDATE_FIELDS = {
@@ -23,6 +24,7 @@ const UPDATE_FIELDS = {
   team_members: ['name', 'role', 'avatar', 'color', 'image_url', 'sort_order', 'is_active'],
   company_values: ['icon', 'title', 'description', 'sort_order', 'is_active'],
   nav_links: ['label', 'href', 'sort_order', 'is_active'],
+  page_sections: ['section_key', 'title', 'subtitle', 'description', 'badge_text', 'extra_data'],
 };
 
 // PUT - Update an item
@@ -43,6 +45,9 @@ export async function PUT(request, { params }) {
       let value = body[field];
       if (field === 'features' && Array.isArray(value)) {
         value = JSON.stringify(value);
+      }
+      if (field === 'extra_data' && value !== undefined && value !== null) {
+        value = typeof value === 'object' ? JSON.stringify(value) : value;
       }
       if (value !== undefined) {
         setClauses.push(`${field} = ?`);

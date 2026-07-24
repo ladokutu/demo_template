@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import pool from '@/src/lib/db';
+import { sendTelegramMessage } from '@/src/lib/telegram';
 
 async function ensureMessagesTable() {
   await pool.query(`
@@ -64,6 +65,18 @@ export async function POST(request) {
        VALUES (?, ?, ?, ?, ?, ?, ?)`,
       [nama, email, telepon || null, perusahaan || null, layanan || null, budget || null, pesan]
     );
+
+    // Send Telegram notification
+    const telegramText = `📩 <b>Pesan Baru dari Website</b>\n\n` +
+      `👤 <b>Nama:</b> ${nama}\n` +
+      `📧 <b>Email:</b> ${email}\n` +
+      (telepon ? `📞 <b>Telepon:</b> ${telepon}\n` : '') +
+      (perusahaan ? `🏢 <b>Perusahaan:</b> ${perusahaan}\n` : '') +
+      (layanan ? `💼 <b>Layanan:</b> ${layanan}\n` : '') +
+      (budget ? `💰 <b>Budget:</b> ${budget}\n` : '') +
+      `\n💬 <b>Pesan:</b>\n${pesan}`;
+
+    sendTelegramMessage(telegramText);
 
     return NextResponse.json({
       success: true,

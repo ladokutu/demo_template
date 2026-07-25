@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import pool from '@/src/lib/db';
 import { sendTelegramMessage } from '@/src/lib/telegram';
+import { verifyToken } from '@/src/lib/auth';
 
 async function ensureMessagesTable() {
   await pool.query(`
@@ -28,6 +29,7 @@ async function ensureMessagesTable() {
 // GET — list all messages (admin)
 export async function GET(request) {
   try {
+    verifyToken(request);
     await ensureMessagesTable();
     const { searchParams } = new URL(request.url);
     const unreadOnly = searchParams.get('unread') === '1';

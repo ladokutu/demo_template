@@ -1,8 +1,10 @@
 import { NextResponse } from 'next/server';
 import pool from '../../../../src/lib/db.js';
+import { verifyToken } from '../../../../src/lib/auth.js';
 
 export async function DELETE(request, { params }) {
   try {
+    verifyToken(request);
     const { id } = params;
     
     // Prevent deleting the last admin
@@ -26,6 +28,7 @@ export async function DELETE(request, { params }) {
 
 export async function PUT(request, { params }) {
   try {
+    verifyToken(request);
     const { id } = params;
     const body = await request.json();
     

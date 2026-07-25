@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import pool from '../../../src/lib/db.js';
+import { verifyToken } from '../../../src/lib/auth.js';
 import crypto from 'crypto';
 
 function hashPassword(password) {
@@ -7,8 +8,9 @@ function hashPassword(password) {
 }
 
 // GET all admin users
-export async function GET() {
+export async function GET(request) {
   try {
+    verifyToken(request);
     let rows = [];
     try {
       const [result] = await pool.query(
@@ -30,6 +32,7 @@ export async function GET() {
 // POST new admin user
 export async function POST(request) {
   try {
+    verifyToken(request);
     const { email, password, name } = await request.json();
     if (!email || !password) {
       return NextResponse.json({ success: false, error: 'Email dan password wajib diisi' }, { status: 400 });

@@ -1,10 +1,12 @@
 import { NextResponse } from 'next/server';
 import { writeFile, mkdir } from 'fs/promises';
+import { verifyToken } from '@/src/lib/auth';
 import { existsSync } from 'fs';
 import path from 'path';
 
 export async function POST(request) {
   try {
+    verifyToken(request);
     const formData = await request.formData();
     const file = formData.get('file');
     

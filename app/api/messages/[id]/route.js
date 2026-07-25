@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import pool from '@/src/lib/db';
+import { verifyToken } from '@/src/lib/auth';
 
 async function ensureMessagesTable() {
   await pool.query(`
@@ -20,6 +21,7 @@ async function ensureMessagesTable() {
 // PATCH — mark message as read
 export async function PATCH(request, { params }) {
   try {
+    verifyToken(request);
     await ensureMessagesTable();
     const { id } = await params;
     await pool.query('UPDATE messages SET is_read = 1 WHERE id = ?', [id]);
@@ -33,6 +35,7 @@ export async function PATCH(request, { params }) {
 // DELETE — delete a message
 export async function DELETE(request, { params }) {
   try {
+    verifyToken(request);
     await ensureMessagesTable();
     const { id } = await params;
     await pool.query('DELETE FROM messages WHERE id = ?', [id]);

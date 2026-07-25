@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import pool from '../../../src/lib/db.js';
 import { runMigration } from '../../../src/lib/migrate.js';
+import { generateToken } from '../../../src/lib/auth.js';
 import crypto from 'crypto';
 
 function hashPassword(password) {
@@ -39,7 +40,7 @@ export async function POST(request) {
           );
           if (retryResult.length > 0) {
             const user = retryResult[0];
-            const token = Buffer.from(`${user.id}:${user.email}:${Date.now()}`).toString('base64');
+            const token = generateToken(user);
             return NextResponse.json({
               success: true,
               token,
@@ -63,7 +64,7 @@ export async function POST(request) {
     }
 
     const user = rows[0];
-    const token = Buffer.from(`${user.id}:${user.email}:${Date.now()}`).toString('base64');
+    const token = generateToken(user);
 
     return NextResponse.json({
       success: true,

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import pool from '@/src/lib/db';
+import { verifyToken } from '@/src/lib/auth';
 
 const TABLE_MAP = {
   services: 'services',
@@ -67,6 +68,7 @@ export async function GET(request, { params }) {
 // POST - Create a new item
 export async function POST(request, { params }) {
   try {
+    verifyToken(request);
     const { section } = await params;
     const table = TABLE_MAP[section];
     if (!table) {

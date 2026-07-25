@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import pool from '@/src/lib/db';
+import { verifyToken } from '@/src/lib/auth';
 
 const TABLE_MAP = {
   services: 'services',
@@ -30,6 +31,7 @@ const UPDATE_FIELDS = {
 // PUT - Update an item
 export async function PUT(request, { params }) {
   try {
+    verifyToken(request);
     const { section, id } = await params;
     const table = TABLE_MAP[section];
     if (!table) {
@@ -71,6 +73,7 @@ export async function PUT(request, { params }) {
 // DELETE - Delete an item
 export async function DELETE(request, { params }) {
   try {
+    verifyToken(request);
     const { section, id } = await params;
     const table = TABLE_MAP[section];
     if (!table) {

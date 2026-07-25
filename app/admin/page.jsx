@@ -193,7 +193,10 @@ function FileUploadField({ field, value, onChange }) {
           const fd = new FormData();
           fd.append('file', file);
           try {
-            const res = await fetch('/api/upload', { method: 'POST', body: fd });
+            const token = sessionStorage.getItem('cms_token');
+            const headers = {};
+            if (token) headers['Authorization'] = `Bearer ${token}`;
+            const res = await fetch('/api/upload', { method: 'POST', headers, body: fd });
             const data = await res.json();
             if (data.success) onChange(data.url);
             else alert('Upload gagal: ' + (data.error || 'Unknown error'));
@@ -213,16 +216,31 @@ export default function AdminPage() {
 
   useEffect(() => {
     const auth = sessionStorage.getItem('cms_auth');
-    if (auth === 'true') setAuthenticated(true);
+    const token = sessionStorage.getItem('cms_token');
+    if (auth === 'true' && token) setAuthenticated(true);
     setAuthChecked(true);
   }, []);
 
   if (!authChecked) return null;
   if (!authenticated) return <LoginPage onLogin={() => setAuthenticated(true)} />;
-  return <AdminDashboard onLogout={() => { sessionStorage.removeItem('cms_auth'); setAuthenticated(false); }} />;
+  return <AdminDashboard onLogout={() => { sessionStorage.removeItem('cms_auth'); sessionStorage.removeItem('cms_token'); setAuthenticated(false); }} />;
 }
 
 function AdminDashboard({ onLogout }) {
+  const authFetch = async (url, options = {}) => {
+    const token = sessionStorage.getItem('cms_token');
+    const headers = { ...options.headers };
+    if (token) headers['Authorization'] = `Bearer ${token}`;
+    const res = await fetch(url, { ...options, headers });
+    if (res.status === 401) {
+      sessionStorage.removeItem('cms_auth');
+      sessionStorage.removeItem('cms_token');
+      window.location.reload();
+      throw new Error('Unauthorized');
+    }
+    return res;
+  };
+
   const [activeSection, setActiveSection] = useState('page_sections');
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -242,15 +260,15 @@ function AdminDashboard({ onLogout }) {
     setLoading(true);
     try {
       if (activeSection === 'admin_users') {
-        const res = await fetch('/api/admin-users');
+        const res = await authFetch('/api/admin-users');
         const data = await res.json();
         if (data.success) setItems(data.data);
       } else if (activeSection === 'messages') {
-        const res = await fetch('/api/messages');
+        const res = await authFetch('/api/messages');
         const data = await res.json();
         if (data.success) setItems(data.data);
       } else {
-        const res = await fetch(`/api/content/${activeSection}?all=true`);
+        const res = await authFetch(`/api/content/${activeSection}?all=true`);
         const data = await res.json();
         if (data.success) setItems(data.data);
       }
@@ -269,7 +287,7 @@ function AdminDashboard({ onLogout }) {
     if (!window.confirm('Jalankan migration?')) return;
     setMigrating(true);
     try {
-      const res = await fetch('/api/migrate', { method: 'POST' });
+      const res = await authFetch('/api/migrate', { method: 'POST' });
       const data = await res.json();
       if (data.success) { showMessage('Schema migration berhasil!'); fetchItems(); }
       else showMessage('Migration gagal: ' + (data.error || ''), 'error');
@@ -281,7 +299,7 @@ function AdminDashboard({ onLogout }) {
     if (!window.confirm('Isi data default?')) return;
     setSeeding(true);
     try {
-      const res = await fetch('/api/migrate?type=seed', { method: 'POST' });
+      const res = await authFetch('/api/migrate?type=seed', { method: 'POST' });
       const data = await res.json();
       if (data.success) { showMessage(data.message || 'Seed data berhasil!'); fetchItems(); }
       else showMessage('Seed gagal: ' + (data.error || ''), 'error');
@@ -292,7 +310,7 @@ function AdminDashboard({ onLogout }) {
   const handleSave = async () => {
     try {
       if (activeSection === 'admin_users') {
-        const res = await fetch('/api/admin-users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
+        const res = await authFetch('/api/admin-users', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(formData) });
         const data = await res.json();
         if (data.success) { showMessage(data.message || 'Admin user berhasil ditambahkan!'); setShowForm(false); setEditingItem(null); setFormData({}); fetchItems(); }
         else showMessage('Gagal: ' + (data.error || ''), 'error');
@@ -305,9 +323,9 @@ function AdminDashboard({ onLogout }) {
 
       let res;
       if (editingItem) {
-        res = await fetch(`/api/content/${activeSection}/${editingItem.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        res = await authFetch(`/api/content/${activeSection}/${editingItem.id}`, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       } else {
-        res = await fetch(`/api/content/${activeSection}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+        res = await authFetch(`/api/content/${activeSection}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       }
       const data = await res.json();
       if (data.success) { showMessage(editingItem ? 'Berhasil diupdate!' : 'Berhasil ditambahkan!'); setShowForm(false); setEditingItem(null); setFormData({}); fetchItems(); }
@@ -319,8 +337,8 @@ function AdminDashboard({ onLogout }) {
     if (!window.confirm('Yakin ingin menghapus?')) return;
     try {
       const res = activeSection === 'admin_users'
-        ? await fetch(`/api/admin-users/${id}`, { method: 'DELETE' })
-        : await fetch(`/api/content/${activeSection}/${id}`, { method: 'DELETE' });
+        ? await authFetch(`/api/admin-users/${id}`, { method: 'DELETE' })
+        : await authFetch(`/api/content/${activeSection}/${id}`, { method: 'DELETE' });
       const data = await res.json();
       if (data.success) { showMessage('Berhasil dihapus!'); fetchItems(); }
       else showMessage('Gagal menghapus', 'error');
@@ -340,7 +358,7 @@ function AdminDashboard({ onLogout }) {
 
   const handleMarkRead = async (id) => {
     try {
-      await fetch(`/api/messages/${id}`, { method: 'PATCH' });
+      await authFetch(`/api/messages/${id}`, { method: 'PATCH' });
       showMessage('Pesan ditandai sudah dibaca');
       fetchItems();
     } catch { showMessage('Gagal update', 'error'); }
@@ -349,7 +367,7 @@ function AdminDashboard({ onLogout }) {
   const handleDeleteMessage = async (id) => {
     if (!window.confirm('Yakin ingin menghapus pesan ini?')) return;
     try {
-      const res = await fetch(`/api/messages/${id}`, { method: 'DELETE' });
+      const res = await authFetch(`/api/messages/${id}`, { method: 'DELETE' });
       const data = await res.json();
       if (data.success) { showMessage('Pesan dihapus'); fetchItems(); }
       else showMessage('Gagal menghapus', 'error');

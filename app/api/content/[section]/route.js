@@ -101,7 +101,7 @@ export async function POST(request, { params }) {
     const insertFields = {
       services: ['icon', 'title', 'description', 'features', 'color', 'sort_order', 'is_active'],
       process_steps: ['step_num', 'title', 'description', 'sort_order', 'is_active'],
-      portfolio_items: ['title', 'client', 'tag', 'description', 'image_url', 'sort_order', 'is_active'],
+      portfolio_items: ['title', 'client', 'tag', 'description', 'image_url', 'url_project', 'sort_order', 'is_active'],
       stats: ['number', 'label', 'icon', 'sort_order', 'is_active'],
       testimonials: ['name', 'role', 'avatar', 'rating', 'text', 'sort_order', 'is_active'],
       partners: ['name', 'logo_url', 'sort_order', 'is_active'],

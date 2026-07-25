@@ -70,7 +70,11 @@ export default function Portfolio({ items, loading }) {
             return (
               <div
                 key={item.title}
-                onClick={() => item.url_project && window.open(item.url_project, '_blank', 'noopener,noreferrer')}
+                onClick={() => {
+                  if (item.url_project) {
+                    window.open(item.url_project, '_blank', 'noopener,noreferrer');
+                  }
+                }}
                 style={{
                   border: `1.5px solid ${hovered === i ? t.blue : t.line}`,
                   borderRadius: 16,
@@ -103,7 +107,7 @@ export default function Portfolio({ items, loading }) {
                   {/* Overlay on hover */}
                   <div style={{ position: 'absolute', inset: 0, background: 'rgba(27,110,243,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: hovered === i ? 1 : 0, transition: 'opacity 0.3s' }} className="port-overlay">
                     <span style={{ color: '#fff', fontWeight: 700, fontSize: 14, border: '1.5px solid rgba(255,255,255,0.6)', padding: '8px 20px', borderRadius: 8 }}>
-                      {item.url_project ? 'Lihat Project →' : 'Lihat Detail →'}
+                      {item.url_project ? 'Lihat Project →' : 'Coming Soon'}
                     </span>
                   </div>
                 </div>

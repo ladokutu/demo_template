@@ -53,7 +53,7 @@ export default function Footer() {
             <h4 style={{ fontSize: 12, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: 20 }}>Kontak</h4>
             {[
               { icon: '📧', val: 'support@ladokutu.info' },
-              { icon: '📞', val: '+628515657757' },
+              { icon: '📞', val: '+6282123021930' },
               { icon: '📍', val: 'Pondok Kelapa, Jakarta Timur' },
             ].map((c) => (
               <div key={c.val} style={{ display: 'flex', gap: 10, marginBottom: 14, alignItems: 'flex-start' }}>

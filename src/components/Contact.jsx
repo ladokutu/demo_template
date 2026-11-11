@@ -57,7 +57,7 @@ export default function Contact() {
 
             {[
               { icon: '📧', label: 'Email', val: 'support@ladokutu.info' },
-              { icon: '📞', label: 'Telepon / WhatsApp', val: '+6285156577357' },
+              { icon: '📞', label: 'Telepon / WhatsApp', val: '+6282123021930' },
               { icon: '📍', label: 'Kantor', val: 'Pondok Kelapa, Jakarta Timur, Indonesia' },
               { icon: '🕐', label: 'Jam Kerja', val: 'Senin–Jumat, 09.00–16.00 WIB' },
             ].map((c) => (
